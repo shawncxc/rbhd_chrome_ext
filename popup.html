@@ -1,0 +1,21 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+	<head>
+		<style type="text/css"></style>
+		<script src="js/custom.js" defer></script>
+	</head>
+	<body>
+		<h3>Robinhood (Beta)</h3>
+		<input type="text" id="tick" /><button id="submit">check</button>
+		<div class="info">
+			<p>Price: <span id="last_price"></span></p>
+			<p>Ask Price: <span id="ask_price"></span></p>
+			<p>Bid Price: <span id="bid_price"></span></p>
+		</div>
+	</body>
+</html>
