@@ -17,10 +17,13 @@ ReactDOM.render((
 	<Provider store={store}>
 		<Router>
 			<div>
-				<ul>
-					<li><Link to="/">List</Link></li>
-				</ul>
-				<Route exact path="/" component={List}/>
+				{
+					// <ul>
+					// 	<li><Link to="/">List</Link></li>
+					// </ul>
+					// <Route exact path="/" component={List}/>
+				}
+				<List />
 			</div>
 		</Router>
 	</Provider>),
