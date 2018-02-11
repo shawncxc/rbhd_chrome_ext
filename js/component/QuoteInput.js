@@ -26,6 +26,10 @@ export default class QuoteInput extends React.Component {
 			<div>
 				<input type="text" onChange={ this.handleInput } value={ this.state.symbol } />
 				<button onClick={ this.addQuote }>ADD</button>
+				<button onClick={ () => { this.props.setQuoteSpan("day"); } }>DAY</button>
+				<button onClick={ () => { this.props.setQuoteSpan("week"); } }>WEEK</button>
+				<button onClick={ () => { this.props.setQuoteSpan("year"); } }>YEAR</button>
+				<button onClick={ () => { this.props.setQuoteSpan("5year"); } }>5 YEAR</button>
 			</div>
 		);
 	}

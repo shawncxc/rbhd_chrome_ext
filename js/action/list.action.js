@@ -34,3 +34,10 @@ export const removeQuote = (symbol) => {
 		dispatch({ type: REMOVE_QUOTE, payload: symbol });
 	};
 };
+
+export const SET_QUOTE_SPAN = "SET_QUOTE_SPAN";
+export const setQuoteSpan = (span) => {
+	return (dispatch) => {
+		dispatch({ type: SET_QUOTE_SPAN, payload: span });
+	};
+};

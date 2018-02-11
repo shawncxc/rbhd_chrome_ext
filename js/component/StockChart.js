@@ -11,11 +11,12 @@ export default class StockChart extends React.Component {
 
 	componentWillReceiveProps(nextProps) {
 		let quoteArr = nextProps.quote;
-		if (quoteArr.join() === this.props.quote.join()) {
+		console.log(nextProps);
+		if (quoteArr.join() === this.props.quote.join() && nextProps.span === this.props.span) {
 			return;
 		}
 
-		nextProps.getQuote(quoteArr.join());
+		nextProps.getQuote(quoteArr.join(), nextProps.interval, nextProps.span);
 	}
 
 	setConfig(data) {
