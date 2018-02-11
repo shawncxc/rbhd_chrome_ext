@@ -1,7 +1,7 @@
 import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { getQuote, addQuote } from "../action/list.action"
+import { getQuote, addQuote, removeQuote } from "../action/list.action"
 import StockChart from "../component/StockChart";
 import QuoteInput from "../component/QuoteInput";
 
@@ -28,7 +28,7 @@ let mapStateToProps = (state) => {
 };
 
 let mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({ getQuote, addQuote }, dispatch);
+	return bindActionCreators({ getQuote, addQuote, removeQuote }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(List)

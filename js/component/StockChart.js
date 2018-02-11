@@ -11,7 +11,7 @@ export default class StockChart extends React.Component {
 
 	componentWillReceiveProps(nextProps) {
 		let quoteArr = nextProps.quote;
-		if (!quoteArr || quoteArr.length === 0 || quoteArr.join() === this.props.quote.join()) {
+		if (quoteArr.join() === this.props.quote.join()) {
 			return;
 		}
 
@@ -40,7 +40,14 @@ export default class StockChart extends React.Component {
 		return (
 			<div>
 				{
-					this.props.share.map((data, i) => <HighStock key={ i } config={ this.setConfig(data) } />)
+					this.props.share.map((data, i) => {
+						return (
+							<div key={ i }>
+								<HighStock key={ "chart" + i } config={ this.setConfig(data) } />
+								<button key={ "remove" + i } onClick={ () => { this.props.removeQuote(data.symbol); } }>REMOVE</button>
+							</div>
+						);
+					})
 				}
 			</div>
 		);

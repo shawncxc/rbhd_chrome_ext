@@ -10,7 +10,7 @@ https://api.robinhood.com/quotes/historicals/?symbols=IRBT&interval=5minute&span
 
 
 const endpoint = {
-	"getQuote": (symbols, interval, span, bounds) => ["https://api.robinhood.com/quotes/historicals/?symbols=", `&interval=${interval}&span=${span}&bounds=${bounds}`].join(symbols),
+	"getQuote": (symbols, interval, span) => ["https://api.robinhood.com/quotes/historicals/?symbols=", `&interval=${interval}&span=${span}`].join(symbols),
 };
 
 export default endpoint;
