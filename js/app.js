@@ -6,6 +6,7 @@ import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import rootReducer from "./reducer";
+import Login from "./container/Login";
 import List from "./container/List";
 
 let store = createStore(
@@ -17,13 +18,9 @@ ReactDOM.render((
 	<Provider store={store}>
 		<Router>
 			<div>
-				{
-					// <ul>
-					// 	<li><Link to="/">List</Link></li>
-					// </ul>
-					// <Route exact path="/" component={List}/>
-				}
-				<List />
+				<Link to="/">Login</Link>
+				<Route exact path="/" component={Login} />
+				<Route exact path="/watchlist" component={List} />
 			</div>
 		</Router>
 	</Provider>),
