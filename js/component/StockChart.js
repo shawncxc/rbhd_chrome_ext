@@ -11,7 +11,6 @@ export default class StockChart extends React.Component {
 
 	componentWillReceiveProps(nextProps) {
 		let quoteArr = nextProps.quote;
-		console.log(nextProps);
 		if (quoteArr.join() === this.props.quote.join() && nextProps.span === this.props.span) {
 			return;
 		}

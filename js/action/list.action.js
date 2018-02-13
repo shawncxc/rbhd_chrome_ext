@@ -1,6 +1,69 @@
 import axios from "axios";
 import endpoint from "../constant/endpoint";
 
+export const GET_PORTFOILO = "GET_PORTFOILO";
+export const getPortfolio = (token) => {
+	return (dispatch) => {
+		let url = endpoint.getAccount;
+		axios({
+			url: url,
+			method: "get",
+			headers: {
+				Authorization: `Token ${token}`
+			},
+		})
+		.then((res) => {
+			let portfolioUrl = res.data.results[0].portfolio || "";
+			
+			axios({
+				url: portfolioUrl,
+				method: "get",
+				headers: {
+					Authorization: `Token ${token}`
+				},
+			})
+			.then((rres) => {
+				let portfolio = rres.data;
+				dispatch({ type: GET_PORTFOILO, payload: portfolio });
+			});
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+	};
+};
+
+let getInstrument = (instrumentUrl, token) => {
+	return axios.get(instrumentUrl);
+};
+export const GET_WATCHLIST = "GET_WATCHLIST";
+export const getWatchList = (token) => {
+	return (dispatch) => {
+		let url = endpoint.getWatchList;
+		axios({
+			url: url,
+			method: "get",
+			headers: {
+				Authorization: `Token ${token}`
+			},
+		})
+		.then((res) => {
+			let list = res.data.results || [];
+			let instruments = list.map(ele => ele.instrument);
+
+			axios
+			.all(instruments.map(ins => getInstrument(ins)))
+			.then((...res) => {
+				let symbols = res[0].map(ele => ele.data.symbol);
+				dispatch({ type: GET_WATCHLIST, payload: symbols });
+			});
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+	};
+};
+
 export const GET_QUOTE = "GET_QUOTE";
 export const getQuote = (symbols, interval="5minute", span="day") => {
 	return (dispatch) => {

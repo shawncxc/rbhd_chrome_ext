@@ -3,6 +3,8 @@ import {
 	ADD_QUOTE,
 	REMOVE_QUOTE,
 	SET_QUOTE_SPAN,
+	GET_WATCHLIST,
+	GET_PORTFOILO,
 } from "../action/list.action";
 
 const ListReducer = (
@@ -17,6 +19,8 @@ const ListReducer = (
 	switch(action.type) {
 		case GET_QUOTE:
 			return Object.assign({}, state, { share: action.payload });
+		case GET_WATCHLIST:
+			return Object.assign({}, state, { quote: action.payload });
 		case ADD_QUOTE:
 			let newQuotes = state.quote.slice();
 			newQuotes.push(action.payload);
@@ -33,6 +37,8 @@ const ListReducer = (
 			if (span === "5year")
 				interval = "week";
 			return Object.assign({}, state, { span: span, interval: interval });
+		case GET_PORTFOILO:
+			return Object.assign({}, state, { portfolio: action.payload });
 		default:
 			return state;
 	}
