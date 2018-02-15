@@ -26,3 +26,46 @@ ReactDOM.render((
 	</Provider>),
 	document.getElementById("app")
 );
+
+// Chrome
+
+let windowId = 0;
+const CONTEXT_MENU_ID = 'robinhood_window';
+
+function closeIfExist() {
+	if (windowId > 0) {
+		chrome.windows.remove(windowId);
+		windowId = chrome.windows.WINDOW_ID_NONE;
+	}
+}
+
+function popWindow(type) {
+	closeIfExist();
+	const options = {
+		type: 'popup',
+		left: 100,
+		top: 100,
+		width: 800,
+		height: 475,
+	};
+	if (type === 'open') {
+		options.url = '../build/index.html';
+		chrome.windows.create(options, (win) => {
+			windowId = win.id;
+		});
+	}
+}
+
+/* Create a context-menu */
+chrome.contextMenus.create({
+	id: CONTEXT_MENU_ID,   // <-- mandatory with event-pages
+	title: "Robinhood",
+	contexts: ["all"]
+});
+
+/* Register a listener for the `onClicked` event */
+chrome.contextMenus.onClicked.addListener(function(event) {
+	if (event.menuItemId === CONTEXT_MENU_ID) {
+		popWindow('open');
+	}
+});

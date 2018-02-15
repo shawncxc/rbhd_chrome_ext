@@ -11,6 +11,7 @@ import {
 } from "../action/list.action"
 import StockChart from "../component/StockChart";
 import QuoteInput from "../component/QuoteInput";
+import AccountSummary from "../component/AccountSummary";
 
 class List extends React.Component {
 	constructor(props) {
@@ -25,7 +26,8 @@ class List extends React.Component {
 	render() {
 		return (
 			<div>
-				<QuoteInput { ...this.props }/>
+				<AccountSummary { ...this.props } />
+				<QuoteInput { ...this.props } />
 				<StockChart { ...this.props } />
 			</div>
 		);
@@ -39,7 +41,7 @@ let mapStateToProps = (state) => {
 		span: state.list.span ? state.list.span : "day",
 		interval: state.list.interval ? state.list.interval : "5minute",
 		token: state.login.token ? state.login.token : "",
-		portfolio: state.list.portfolio, 
+		portfolio: state.list.portfolio ? state.list.portfolio : {},
 	};
 };
 
