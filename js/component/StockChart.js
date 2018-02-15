@@ -1,6 +1,7 @@
 import React from "react";
 import HighStock from "react-highcharts/ReactHighstock";
 import HighChart from "react-highcharts";
+import { CircularProgress } from "material-ui/Progress";
 
 export default class StockChart extends React.Component {
 	constructor(props) {
@@ -34,7 +35,7 @@ export default class StockChart extends React.Component {
 
 	render() {
 		if (!this.props.share || this.props.share.length === 0) {
-			return "";
+			return <CircularProgress />;
 		}
 
 		return (

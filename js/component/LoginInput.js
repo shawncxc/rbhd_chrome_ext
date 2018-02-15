@@ -1,4 +1,5 @@
 import React from "react";
+import Grid from "material-ui/Grid";
 
 export default class LoginInput extends React.Component {
 	constructor(props) {
@@ -32,11 +33,17 @@ export default class LoginInput extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<input type="text" onChange={ this.onUsernameChange } />
-				<input type="password" onChange={ this.onPasswordChange } />
-				<button onClick={ this.login }>Login</button>
-			</div>
+			<Grid container spacing={24}>
+				<Grid item xs={12}>
+					<input type="text" onChange={ this.onUsernameChange } />
+				</Grid>
+				<Grid item xs={12}>
+					<input type="password" onChange={ this.onPasswordChange } />
+				</Grid>
+				<Grid item xs={12}>
+					<button onClick={ this.login }>Login</button>
+				</Grid>
+			</Grid>
 		);
 	}
 }

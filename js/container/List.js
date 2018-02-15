@@ -12,6 +12,7 @@ import {
 import StockChart from "../component/StockChart";
 import QuoteInput from "../component/QuoteInput";
 import AccountSummary from "../component/AccountSummary";
+import Grid from "material-ui/Grid";
 
 class List extends React.Component {
 	constructor(props) {
@@ -25,11 +26,17 @@ class List extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<AccountSummary { ...this.props } />
-				<QuoteInput { ...this.props } />
-				<StockChart { ...this.props } />
-			</div>
+			<Grid container spacing={24}>
+				<Grid item xs={12}>
+					<AccountSummary { ...this.props } />
+				</Grid>
+				<Grid item xs={12}>
+					<QuoteInput { ...this.props } />
+				</Grid>
+				<Grid item xs={12}>
+					<StockChart { ...this.props } />
+				</Grid>
+			</Grid>
 		);
 	}
 }
