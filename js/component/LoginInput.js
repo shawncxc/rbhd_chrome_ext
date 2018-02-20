@@ -16,6 +16,14 @@ export default class LoginInput extends React.Component {
 		this.login = this.login.bind(this);
 	}
 
+	componentDidMount() {
+		chrome.storage.sync.get("robinhood", (cred) => {
+			if (cred.robinhood) {
+				this.props.login(cred.robinhood.username, cred.robinhood.password);
+			}
+		});
+	}
+
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.token)
 			this.props.history.push("/watchlist");

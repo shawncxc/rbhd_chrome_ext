@@ -15,13 +15,9 @@ export const login = (username, password) => {
 		})
 		.then((res) => {
 			let token = res.data.token || "";
-			// Save it using the Chrome extension storage API.
-			chrome.storage.sync.set({ username: username, password: password }, function() {
-				// Notify that we saved.
-				// message('Settings saved');
-				console.log("credentials saved");
+			chrome.storage.sync.set({ robinhood: { username: username, password: password } }, function() {
+				dispatch({ type: LOGIN, payload: token });
 			});
-			dispatch({ type: LOGIN, payload: token });
 		})
 		.catch((err) => {
 			console.error(err);
