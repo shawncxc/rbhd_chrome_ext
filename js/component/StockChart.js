@@ -28,7 +28,12 @@ export default class StockChart extends React.Component {
 			series: [
 				{
 					name: data.symbol,
-					data: data.historicals.map(ele => [new Date(ele.begins_at).getTime(), parseFloat(ele.close_price)])
+					data: data.historicals.map(
+						ele => [
+							(new Date(ele.begins_at).getTime()) - 6 * 3600 * 1000,
+							parseFloat(ele.close_price)
+						]
+					)
 				}
 			],
 		};

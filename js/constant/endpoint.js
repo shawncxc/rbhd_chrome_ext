@@ -14,6 +14,7 @@ const endpoint = {
 	login: "https://api.robinhood.com/api-token-auth/",
 	getAccount: "https://api.robinhood.com/accounts/",
 	getWatchList: "https://api.robinhood.com/watchlists/Default",
+	addWatchList: "https://api.robinhood.com/watchlists/Default/bulk_add/",
 };
 
 export default endpoint;

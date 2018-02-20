@@ -84,10 +84,28 @@ export const getQuote = (symbols, interval="5minute", span="day") => {
 	};
 };
 
-export const ADD_QUOTE = "ADD_QUOTE";
-export const addQuote = (symbol) => {
+// it also has the capability to bulk add
+// but right now only use it for single add
+export const ADD_WATCHLIST = "ADD_WATCHLIST";
+export const addWatchList = (symbol, token) => {
+	let url = endpoint.addWatchList;
 	return (dispatch) => {
-		dispatch({ type: ADD_QUOTE, payload: symbol });
+		axios({
+			url: url,
+			method: "post",
+			headers: {
+				Authorization: `Token ${token}`
+			},
+			data: {
+				symbols: symbol,
+			},
+		})
+		.then(() => {
+			dispatch({ type: ADD_WATCHLIST, payload: symbol });
+		})
+		.catch((err) => {
+			console.error(err);
+		});
 	};
 };
 

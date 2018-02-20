@@ -1,6 +1,6 @@
 import {
 	GET_QUOTE,
-	ADD_QUOTE,
+	ADD_WATCHLIST,
 	REMOVE_QUOTE,
 	SET_QUOTE_SPAN,
 	GET_WATCHLIST,
@@ -21,7 +21,7 @@ const ListReducer = (
 			return Object.assign({}, state, { share: action.payload });
 		case GET_WATCHLIST:
 			return Object.assign({}, state, { quote: action.payload });
-		case ADD_QUOTE:
+		case ADD_WATCHLIST:
 			let newQuotes = state.quote.slice();
 			newQuotes.push(action.payload);
 			return Object.assign({}, state, { quote: newQuotes });
