@@ -1,5 +1,7 @@
 import React from "react";
 import Grid from "material-ui/Grid";
+import TextField from "material-ui/TextField";
+import Button from "material-ui/Button";
 
 export default class QuoteInput extends React.Component {
 	constructor(props) {
@@ -25,12 +27,12 @@ export default class QuoteInput extends React.Component {
 	render() {
 		return (
 			<Grid container spacing={24}>
-				<input type="text" onChange={ this.handleInput } value={ this.state.symbol } />
-				<button onClick={ this.addQuote }>ADD</button>
-				<button onClick={ () => { this.props.setQuoteSpan("day"); } }>DAY</button>
-				<button onClick={ () => { this.props.setQuoteSpan("week"); } }>WEEK</button>
-				<button onClick={ () => { this.props.setQuoteSpan("year"); } }>YEAR</button>
-				<button onClick={ () => { this.props.setQuoteSpan("5year"); } }>5 YEAR</button>
+				<TextField label="Symbol" helperText="Enter the symbol of the stock" type="text" onChange={ this.handleInput } value={ this.state.symbol } />
+				<Button variant="raised" color="primary" onClick={ this.addQuote }>ADD</Button>
+				<Button variant="raised" color="primary" onClick={ () => { this.props.setQuoteSpan("day"); } }>DAY</Button>
+				<Button variant="raised" color="primary" onClick={ () => { this.props.setQuoteSpan("week"); } }>WEEK</Button>
+				<Button variant="raised" color="primary" onClick={ () => { this.props.setQuoteSpan("year"); } }>YEAR</Button>
+				<Button variant="raised" color="primary" onClick={ () => { this.props.setQuoteSpan("5year"); } }>5 YEAR</Button>
 			</Grid>
 		);
 	}

@@ -1,5 +1,7 @@
 import React from "react";
 import Grid from "material-ui/Grid";
+import TextField from "material-ui/TextField";
+import Button from "material-ui/Button";
 
 export default class LoginInput extends React.Component {
 	constructor(props) {
@@ -35,13 +37,13 @@ export default class LoginInput extends React.Component {
 		return (
 			<Grid container spacing={24}>
 				<Grid item xs={12}>
-					<input type="text" onChange={ this.onUsernameChange } />
+					<TextField label="Username" helperText="Enter your robinhood username" onChange={ this.onUsernameChange } />
 				</Grid>
 				<Grid item xs={12}>
-					<input type="password" onChange={ this.onPasswordChange } />
+					<TextField label="Password" helperText="Enter your robinhood password" type="password" onChange={ this.onPasswordChange } />
 				</Grid>
 				<Grid item xs={12}>
-					<button onClick={ this.login }>Login</button>
+					<Button variant="raised" color="primary" onClick={ this.login }>Login</Button>
 				</Grid>
 			</Grid>
 		);

@@ -2,6 +2,7 @@ import React from "react";
 import HighStock from "react-highcharts/ReactHighstock";
 import HighChart from "react-highcharts";
 import { CircularProgress } from "material-ui/Progress";
+import Button from "material-ui/Button";
 
 export default class StockChart extends React.Component {
 	constructor(props) {
@@ -45,7 +46,7 @@ export default class StockChart extends React.Component {
 						return (
 							<div key={ i }>
 								<HighStock key={ "chart" + i } config={ this.setConfig(data) } />
-								<button key={ "remove" + i } onClick={ () => { this.props.removeQuote(data.symbol); } }>REMOVE</button>
+								<Button variant="raised" color="secondary" key={ "remove" + i } onClick={ () => { this.props.removeQuote(data.symbol); } }>REMOVE</Button>
 							</div>
 						);
 					})
