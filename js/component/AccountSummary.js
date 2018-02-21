@@ -8,10 +8,10 @@ export default class AccountSummary extends React.Component {
 
 	render() {
 		return (
-			<Grid container spacing={24}>
+			<div>
 				<Grid item xs={12}>Equity: { this.props.portfolio.equity }</Grid>
 				<Grid item xs={12}>After Hour Equity: { this.props.portfolio.extended_hours_equity }</Grid>
-			</Grid>
+			</div>
 		);
 	}
 }

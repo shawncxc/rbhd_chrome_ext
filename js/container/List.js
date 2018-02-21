@@ -26,7 +26,7 @@ class List extends React.Component {
 
 	render() {
 		return (
-			<Grid container spacing={24}>
+			<div>
 				<Grid item xs={12}>
 					<AccountSummary { ...this.props } />
 				</Grid>
@@ -36,7 +36,7 @@ class List extends React.Component {
 				<Grid item xs={12}>
 					<StockChart { ...this.props } />
 				</Grid>
-			</Grid>
+			</div>
 		);
 	}
 }

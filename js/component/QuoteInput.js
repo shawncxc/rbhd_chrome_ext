@@ -36,14 +36,14 @@ export default class QuoteInput extends React.Component {
 
 	render() {
 		return (
-			<Grid container spacing={24}>
+			<div>
 				<TextField label="Symbol" helperText="Enter the symbol of the stock" type="text" onChange={ this.handleInput } value={ this.state.symbol } />
 				<Button variant="fab" mini color="primary" aria-label="add" onClick={ this.addWatchList }><AddIcon /></Button>
 				<span>day <Radio checked={ this.state.span === "day" } onChange={ this.handleSpanChange } value="day" /></span>
 				<span>week <Radio checked={ this.state.span === "week" } onChange={ this.handleSpanChange } value="week" /></span>
 				<span>year <Radio checked={ this.state.span === "year" } onChange={ this.handleSpanChange } value="year" /></span>
 				<span>5 year <Radio checked={ this.state.span === "5year" } onChange={ this.handleSpanChange } value="5year" /></span>
-			</Grid>
+			</div>
 		);
 	}
 }

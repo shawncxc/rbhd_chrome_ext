@@ -43,7 +43,7 @@ export default class LoginInput extends React.Component {
 
 	render() {
 		return (
-			<Grid container spacing={24}>
+			<div>
 				<Grid item xs={12}>
 					<TextField label="Username" helperText="Enter your robinhood username" onChange={ this.onUsernameChange } />
 				</Grid>
@@ -53,7 +53,7 @@ export default class LoginInput extends React.Component {
 				<Grid item xs={12}>
 					<Button variant="raised" color="primary" onClick={ this.login }>Login</Button>
 				</Grid>
-			</Grid>
+			</div>
 		);
 	}
 }
