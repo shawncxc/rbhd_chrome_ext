@@ -15,9 +15,12 @@ export const login = (username, password) => {
 		})
 		.then((res) => {
 			let token = res.data.token || "";
-			chrome.storage.sync.set({ robinhood: { username: username, password: password } }, function() {
+			chrome.storage && chrome.storage.sync.set({ robinhood: { username: username, password: password } }, function() {
 				dispatch({ type: LOGIN, payload: token });
 			});
+			
+			if (!chrome.storage)
+				dispatch({ type: LOGIN, payload: token });
 		})
 		.catch((err) => {
 			console.error(err);

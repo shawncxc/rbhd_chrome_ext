@@ -37,8 +37,8 @@ export default class QuoteInput extends React.Component {
 	render() {
 		return (
 			<div>
-				<TextField label="Symbol" helperText="Enter the symbol of the stock" type="text" onChange={ this.handleInput } value={ this.state.symbol } />
-				<Button variant="fab" mini color="primary" aria-label="add" onClick={ this.addWatchList }><AddIcon /></Button>
+				<TextField label="Symbol" type="text" onChange={ this.handleInput } value={ this.state.symbol } />
+				<Button style={{ backgroundColor: "#1cee85" }} variant="fab" mini color="primary" aria-label="add" onClick={ this.addWatchList }><AddIcon /></Button>
 				<span>day <Radio checked={ this.state.span === "day" } onChange={ this.handleSpanChange } value="day" /></span>
 				<span>week <Radio checked={ this.state.span === "week" } onChange={ this.handleSpanChange } value="week" /></span>
 				<span>year <Radio checked={ this.state.span === "year" } onChange={ this.handleSpanChange } value="year" /></span>

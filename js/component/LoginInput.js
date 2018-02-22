@@ -17,7 +17,7 @@ export default class LoginInput extends React.Component {
 	}
 
 	componentDidMount() {
-		chrome.storage.sync.get("robinhood", (cred) => {
+		chrome.storage && chrome.storage.sync.get("robinhood", (cred) => {
 			if (cred.robinhood) {
 				this.props.login(cred.robinhood.username, cred.robinhood.password);
 			}

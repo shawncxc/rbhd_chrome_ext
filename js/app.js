@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, } from "react-router-dom";
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
@@ -17,11 +17,11 @@ let store = createStore(
 ReactDOM.render((
 	<Provider store={store}>
 		<Router>
-			<div>
-				<Link to="/">Login</Link>
+			<Switch>
 				<Route exact path="/" component={Login} />
 				<Route exact path="/watchlist" component={List} />
-			</div>
+				<Route path="*" component={Login} />
+			</Switch>
 		</Router>
 	</Provider>),
 	document.getElementById("app")
@@ -57,14 +57,14 @@ function popWindow(type) {
 }
 
 /* Create a context-menu */
-chrome.contextMenus.create({
+chrome.contextMenus && chrome.contextMenus.create({
 	id: CONTEXT_MENU_ID,   // <-- mandatory with event-pages
 	title: "Robinhood",
 	contexts: ["all"]
 });
 
 /* Register a listener for the `onClicked` event */
-chrome.contextMenus.onClicked.addListener(function(event) {
+chrome.contextMenus && chrome.contextMenus.onClicked.addListener(function(event) {
 	if (event.menuItemId === CONTEXT_MENU_ID) {
 		popWindow('open');
 	}

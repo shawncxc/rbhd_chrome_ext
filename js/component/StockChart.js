@@ -49,7 +49,8 @@ export default class StockChart extends React.Component {
 	setConfig(data) {
 		var historicals = data.historicals;
 		var currentPrice = parseFloat(historicals[historicals.length - 1].close_price);
-		var currentPercent = (currentPrice / data.previous_close_price - 1) * 100;
+		var startPrice = data.span === "day" ? parseFloat(data.previous_close_price) : parseFloat(historicals[0].close_price);
+		var currentPercent = (currentPrice / startPrice - 1) * 100;
 		var color = data.open_price <= currentPrice ? "#1cee85" : "#ee1c1c";
 
 		return {
