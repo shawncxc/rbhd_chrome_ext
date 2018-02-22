@@ -2,7 +2,26 @@ import React from "react";
 import Grid from "material-ui/Grid";
 import TextField from "material-ui/TextField";
 import Button from "material-ui/Button";
-import AddIcon from "material-ui-icons/Add";
+
+const btnRowStyle = {
+	textAlign: "center",
+	backgroundColor: "black",
+};
+
+const normalBtnStyle = {
+	color: "#1cee85",
+	marginTop: 10,
+	marginBottom: 10,
+	fontSize: 10,
+};
+
+const highlightBtnStyle = {
+	color: "black",
+	marginTop: 10,
+	marginBottom: 10,
+	fontSize: 10,
+	backgroundColor: "#1cee85",
+};
 
 export default class QuoteInput extends React.Component {
 	constructor(props) {
@@ -28,24 +47,31 @@ export default class QuoteInput extends React.Component {
 	}
 
 	handleSpanChange(span) {
-		this.setState({ span: span });
-		this.props.setQuoteSpan(span);
+		this.setState({ span: span }, () => {
+			this.props.setQuoteSpan(span);
+		});
 	}
 
 	render() {
 		return (
-			<div>
+			<Grid container spacing={0}>
 				<Grid item xs={12}>
 					<TextField label="Symbol" type="text" onChange={ this.handleInput } value={ this.state.symbol } />
-					<Button style={{ backgroundColor: "#1cee85" }} variant="fab" mini color="primary" aria-label="add" onClick={ this.addWatchList }><AddIcon /></Button>
+					<Button size="small" onClick={ this.addWatchList }>Add</Button>
 				</Grid>
-				<Grid item xs={12}>
-					<Button onClick={ () => { this.handleSpanChange("day"); } }>day</Button>
-					<Button onClick={ () => { this.handleSpanChange("week"); } }>week</Button>
-					<Button onClick={ () => { this.handleSpanChange("year"); } }>year</Button>
-					<Button onClick={ () => { this.handleSpanChange("5year"); } }>5 year</Button>
+				<Grid item xs={3} style={ btnRowStyle }>
+					<Button size="small" style={ this.state.span === "day" ? highlightBtnStyle : normalBtnStyle } onClick={ () => { this.handleSpanChange("day"); } }>day</Button>
 				</Grid>
-			</div>
+				<Grid item xs={3} style={ btnRowStyle }>
+					<Button size="small" style={ this.state.span === "week" ? highlightBtnStyle : normalBtnStyle } onClick={ () => { this.handleSpanChange("week"); } }>week</Button>
+				</Grid>
+				<Grid item xs={3} style={ btnRowStyle }>
+					<Button size="small" style={ this.state.span === "year" ? highlightBtnStyle : normalBtnStyle } onClick={ () => { this.handleSpanChange("year"); } }>year</Button>
+				</Grid>
+				<Grid item xs={3} style={ btnRowStyle }>
+					<Button size="small" style={ this.state.span === "5year" ? highlightBtnStyle : normalBtnStyle } onClick={ () => { this.handleSpanChange("5year"); } }>5 year</Button>
+				</Grid>
+			</Grid>
 		);
 	}
 }

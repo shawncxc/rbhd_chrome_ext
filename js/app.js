@@ -45,7 +45,7 @@ function popWindow(type) {
 		// type: "popup",
 		// left: 300,
 		// top: 300,
-		width: 800,
+		width: 600,
 		height: 475,
 	};
 	if (type === 'open') {

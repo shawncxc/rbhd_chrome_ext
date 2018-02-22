@@ -1,6 +1,7 @@
 import React from "react";
 import HighStock from "react-highcharts/ReactHighstock";
 import { CircularProgress } from "material-ui/Progress";
+import Grid from "material-ui/Grid";
 import Button from "material-ui/Button";
 
 HighStock.Highcharts.setOptions({
@@ -88,7 +89,7 @@ export default class StockChart extends React.Component {
 		}
 
 		return (
-			<div>
+			<Grid container spacing={0}>
 				{
 					this.props.share.map((data, i) => {
 						return (
@@ -101,7 +102,7 @@ export default class StockChart extends React.Component {
 						);
 					})
 				}
-			</div>
+			</Grid>
 		);
 	}
 }
