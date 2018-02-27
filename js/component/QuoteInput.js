@@ -9,7 +9,7 @@ const btnRowStyle = {
 };
 
 const normalBtnStyle = {
-	color: "#1cee85",
+	color: "#1fcc9a",
 	marginTop: 10,
 	marginBottom: 10,
 	fontSize: 10,
@@ -20,7 +20,7 @@ const highlightBtnStyle = {
 	marginTop: 10,
 	marginBottom: 10,
 	fontSize: 10,
-	backgroundColor: "#1cee85",
+	backgroundColor: "#1fcc9a",
 };
 
 export default class QuoteInput extends React.Component {

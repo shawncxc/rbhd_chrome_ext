@@ -7,6 +7,8 @@ import Button from "material-ui/Button";
 HighStock.Highcharts.setOptions({
 	chart: {
 		backgroundColor: "black",
+		height: 200,
+		width: 450,
 	},
 	title: {
 		style: {
@@ -52,7 +54,7 @@ export default class StockChart extends React.Component {
 		var currentPrice = parseFloat(historicals[historicals.length - 1].close_price);
 		var startPrice = data.span === "day" ? parseFloat(data.previous_close_price) : parseFloat(historicals[0].close_price);
 		var currentPercent = (currentPrice / startPrice - 1) * 100;
-		var color = data.open_price <= currentPrice ? "#1cee85" : "#ee1c1c";
+		var color = data.open_price <= currentPrice ? "#1fcc9a" : "#fc5038";
 
 		return {
 			rangeSelector: { enabled: false },

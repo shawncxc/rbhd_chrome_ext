@@ -20,6 +20,7 @@ const endpoint = {
 	getAccount: "https://api.robinhood.com/accounts/",
 	getWatchList: "https://api.robinhood.com/watchlists/Default",
 	addWatchList: "https://api.robinhood.com/watchlists/Default/bulk_add/",
+	placeOrder: "https://api.robinhood.com/orders/",
 };
 
 export default endpoint;

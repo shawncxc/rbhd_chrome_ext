@@ -45,13 +45,13 @@ export default class LoginInput extends React.Component {
 		return (
 			<div>
 				<Grid item xs={12}>
-					<TextField label="Username" onChange={ this.onUsernameChange } />
+					<TextField label="Username" onChange={ this.onUsernameChange } fullWidth />
 				</Grid>
 				<Grid item xs={12}>
-					<TextField label="Password" type="password" onChange={ this.onPasswordChange } />
+					<TextField label="Password" type="password" onChange={ this.onPasswordChange } fullWidth />
 				</Grid>
 				<Grid item xs={12}>
-					<Button variant="raised" color="primary" onClick={ this.login }>Login</Button>
+					<Button variant="raised" color="primary" onClick={ this.login } fullWidth>Login</Button>
 				</Grid>
 			</div>
 		);

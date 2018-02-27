@@ -9,21 +9,44 @@ import rootReducer from "./reducer";
 import Login from "./container/Login";
 import List from "./container/List";
 
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+
+const theme = createMuiTheme({
+	palette: {
+		primary: {
+			// light: will be calculated from palette.primary.main,
+			main: '#1fcc9a',
+			// dark: will be calculated from palette.primary.main,
+			// contrastText: will be calculated to contast with palette.primary.main
+		},
+		secondary: {
+			// light: '#0066ff',
+			main: '#1fcc9a',
+			// dark: will be calculated from palette.secondary.main,
+			// contrastText: '#ffcc00',
+		},
+		// error: will us the default color
+	},
+});
+
+
 let store = createStore(
 	rootReducer,
 	composeWithDevTools(applyMiddleware(thunk))
 );
 
 ReactDOM.render((
-	<Provider store={store}>
-		<Router>
-			<Switch>
-				<Route exact path="/" component={Login} />
-				<Route exact path="/watchlist" component={List} />
-				<Route path="*" component={Login} />
-			</Switch>
-		</Router>
-	</Provider>),
+	<MuiThemeProvider theme={theme}>
+		<Provider store={store}>
+			<Router>
+				<Switch>
+					<Route exact path="/" component={Login} />
+					<Route exact path="/watchlist" component={List} />
+					<Route path="*" component={Login} />
+				</Switch>
+			</Router>
+		</Provider>
+	</MuiThemeProvider>),
 	document.getElementById("app")
 );
 
