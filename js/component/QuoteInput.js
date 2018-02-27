@@ -5,7 +5,7 @@ import Button from "material-ui/Button";
 
 const btnRowStyle = {
 	textAlign: "center",
-	backgroundColor: "black",
+	// backgroundColor: "black",
 };
 
 const normalBtnStyle = {
@@ -16,7 +16,7 @@ const normalBtnStyle = {
 };
 
 const highlightBtnStyle = {
-	color: "black",
+	// color: "black",
 	marginTop: 10,
 	marginBottom: 10,
 	fontSize: 10,

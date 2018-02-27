@@ -6,7 +6,7 @@ import Button from "material-ui/Button";
 
 HighStock.Highcharts.setOptions({
 	chart: {
-		backgroundColor: "black",
+		// backgroundColor: "black",
 		height: 200,
 		width: 450,
 	},
