@@ -8,6 +8,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import rootReducer from "./reducer";
 import Login from "./container/Login";
 import List from "./container/List";
+import "../css/main.css";
 
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 
@@ -68,7 +69,7 @@ function popWindow(type) {
 		// type: "popup",
 		// left: 300,
 		// top: 300,
-		width: 600,
+		width: 450,
 		height: 475,
 	};
 	if (type === 'open') {

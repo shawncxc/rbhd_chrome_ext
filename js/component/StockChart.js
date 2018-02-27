@@ -3,16 +3,16 @@ import HighStock from "react-highcharts/ReactHighstock";
 import { CircularProgress } from "material-ui/Progress";
 import Grid from "material-ui/Grid";
 import Button from "material-ui/Button";
+import "../../css/StockChart.css";
 
 HighStock.Highcharts.setOptions({
 	chart: {
-		// backgroundColor: "black",
 		height: 200,
 		width: 450,
 	},
 	title: {
 		style: {
-			color: "white",
+			color: "black",
 			font: "bold 16px Trebuchet MS, Verdana, sans-serif"
 		}
 	},
@@ -37,6 +37,12 @@ export default class StockChart extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.state = {
+			openMenu: null,
+		};
+
+		this.handleMenu = this.handleMenu.bind(this);
+		this.handleCloseMenu = this.handleCloseMenu.bind(this);
 		this.setConfig = this.setConfig.bind(this);
 	}
 
@@ -47,6 +53,14 @@ export default class StockChart extends React.Component {
 		}
 
 		nextProps.getQuote(quoteArr.join(), nextProps.interval, nextProps.span);
+	}
+
+	handleMenu(symbol) {
+		this.setState({ openMenu: symbol });
+	}
+
+	handleCloseMenu() {
+		this.setState({ openMenu: null });
 	}
 
 	setConfig(data) {
@@ -63,7 +77,7 @@ export default class StockChart extends React.Component {
 				text: `$${currentPrice.toFixed(2)}, ${currentPercent.toFixed(2)}%`,
 				style: {
 					color: color,
-					font: "bold 15px Trebuchet MS, Verdana, sans-serif"
+					font: "15px Trebuchet MS, Verdana, sans-serif"
 				}
 			},
 			navigator: { enabled: false },
@@ -87,7 +101,11 @@ export default class StockChart extends React.Component {
 
 	render() {
 		if (!this.props.share || this.props.share.length === 0) {
-			return <CircularProgress />;
+			return (
+				<Grid item xs={12} className="stock-spinner">
+					<CircularProgress />
+				</Grid>
+			);
 		}
 
 		return (
@@ -96,10 +114,7 @@ export default class StockChart extends React.Component {
 					this.props.share.map((data, i) => {
 						return (
 							<div key={ i }>
-								<HighStock key={ "chart" + i } config={ this.setConfig(data) } />
-								{
-									/*<Button variant="raised" color="secondary" key={ "remove" + i } onClick={ () => { this.props.removeQuote(data.symbol); } }>REMOVE</Button>*/
-								}
+								<HighStock key={ "chart-" + i } config={ this.setConfig(data) } />
 							</div>
 						);
 					})
