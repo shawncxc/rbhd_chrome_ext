@@ -42,6 +42,7 @@ export default class StockChart extends React.Component {
 		super(props);
 
 		this.setConfig = this.setConfig.bind(this);
+		this.goToStockDetail = this.goToStockDetail.bind(this);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -65,8 +66,17 @@ export default class StockChart extends React.Component {
 		var color = data.open_price <= currentPrice ? "#1fcc9a" : "#fc5038";
 
 		return {
+			chart: {
+				events: {
+					click: () => {
+						this.goToStockDetail(data.symbol);
+					}
+				},
+			},
 			rangeSelector: { enabled: false },
-			title: { text: data.symbol },
+			title: {
+				text: data.symbol,
+			},
 			subtitle: {
 				text: `$${currentPrice.toFixed(2)}, ${currentPercent.toFixed(2)}%`,
 				style: {
@@ -93,6 +103,10 @@ export default class StockChart extends React.Component {
 		};
 	}
 
+	goToStockDetail(symbol) {
+		this.props.history.push(`/stock/${symbol}`);
+	}
+
 	render() {
 		if (!this.props.share || this.props.share.length === 0 ||
 			!this.props.sharePos || this.props.sharePos.length === 0
@@ -110,7 +124,7 @@ export default class StockChart extends React.Component {
 					<Divider />
 					<ListItem>
 						<ListItemIcon><Timeline /></ListItemIcon>
-						<ListItemText primary="Current Position" />
+						<ListItemText primary="Stocks" />
 					</ListItem>
 					<Divider />
 				</List>

@@ -8,6 +8,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import rootReducer from "./reducer";
 import Login from "./container/Login";
 import List from "./container/List";
+import Detail from "./container/Detail";
 import "../css/main.css";
 
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
@@ -43,6 +44,7 @@ ReactDOM.render((
 				<Switch>
 					<Route exact path="/" component={Login} />
 					<Route exact path="/watchlist" component={List} />
+					<Route exact path="/stock/:symbol" component={Detail} />
 					<Route path="*" component={Login} />
 				</Switch>
 			</Router>
