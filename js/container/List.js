@@ -8,6 +8,7 @@ import {
 	setQuoteSpan,
 	getWatchList,
 	getPortfolio,
+	getQuotePos,
 } from "../action/list.action"
 import StockChart from "../component/StockChart";
 import QuoteInput from "../component/QuoteInput";
@@ -49,11 +50,14 @@ let mapStateToProps = (state) => {
 		interval: state.list.interval ? state.list.interval : "5minute",
 		token: state.login.token ? state.login.token : "",
 		portfolio: state.list.portfolio ? state.list.portfolio : {},
+		positions: state.list.positions ? state.list.positions : [],
+		poslist: state.list.poslist ? state.list.poslist : [],
+		sharePos: state.list.sharePos && state.list.sharePos.length > 0 ? state.list.sharePos : [],
 	};
 };
 
 let mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({ getQuote, addWatchList, removeQuote, setQuoteSpan, getWatchList, getPortfolio }, dispatch);
+	return bindActionCreators({ getQuote, addWatchList, removeQuote, setQuoteSpan, getWatchList, getPortfolio, getQuotePos, }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(List)

@@ -6,6 +6,9 @@ examples:
 historical quotes:
 https://api.robinhood.com/quotes/historicals/?symbols=IRBT&interval=5minute&span=day&bounds=trading
 
+current positions:
+https://api.robinhood.com/accounts/5QZ22711/positions/?nonzero=true
+
 */
 
 

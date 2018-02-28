@@ -5,6 +5,9 @@ import {
 	SET_QUOTE_SPAN,
 	GET_WATCHLIST,
 	GET_PORTFOILO,
+	GET_POSITIONS,
+	GET_POSLIST,
+	GET_QUOTE_POS,
 } from "../action/list.action";
 
 const ListReducer = (
@@ -39,6 +42,12 @@ const ListReducer = (
 			return Object.assign({}, state, { span: span, interval: interval });
 		case GET_PORTFOILO:
 			return Object.assign({}, state, { portfolio: action.payload });
+		case GET_POSITIONS:
+			return Object.assign({}, state, { positions: action.payload });
+		case GET_POSLIST:
+			return Object.assign({}, state, { poslist: action.payload });
+		case GET_QUOTE_POS:
+			return Object.assign({}, state, { sharePos: action.payload });
 		default:
 			return state;
 	}

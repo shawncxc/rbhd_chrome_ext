@@ -3,6 +3,10 @@ import HighStock from "react-highcharts/ReactHighstock";
 import { CircularProgress } from "material-ui/Progress";
 import Grid from "material-ui/Grid";
 import Button from "material-ui/Button";
+import List, { ListItem, ListItemIcon, ListItemText } from "material-ui/List";
+import Divider from "material-ui/Divider";
+import Visibility from "material-ui-icons/Visibility";
+import Timeline from "material-ui-icons/Timeline";
 import "../../css/StockChart.css";
 
 HighStock.Highcharts.setOptions({
@@ -37,30 +41,20 @@ export default class StockChart extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			openMenu: null,
-		};
-
-		this.handleMenu = this.handleMenu.bind(this);
-		this.handleCloseMenu = this.handleCloseMenu.bind(this);
 		this.setConfig = this.setConfig.bind(this);
 	}
 
 	componentWillReceiveProps(nextProps) {
 		let quoteArr = nextProps.quote;
-		if (quoteArr.join() === this.props.quote.join() && nextProps.span === this.props.span) {
+		let positionArr = nextProps.poslist;
+		if (quoteArr.join() === this.props.quote.join() &&
+			positionArr.join() === this.props.poslist.join() &&
+			nextProps.span === this.props.span) {
 			return;
 		}
 
 		nextProps.getQuote(quoteArr.join(), nextProps.interval, nextProps.span);
-	}
-
-	handleMenu(symbol) {
-		this.setState({ openMenu: symbol });
-	}
-
-	handleCloseMenu() {
-		this.setState({ openMenu: null });
+		nextProps.getQuotePos(positionArr.join(), nextProps.interval, nextProps.span);
 	}
 
 	setConfig(data) {
@@ -100,7 +94,9 @@ export default class StockChart extends React.Component {
 	}
 
 	render() {
-		if (!this.props.share || this.props.share.length === 0) {
+		if (!this.props.share || this.props.share.length === 0 ||
+			!this.props.sharePos || this.props.sharePos.length === 0
+		) {
 			return (
 				<Grid item xs={12} className="stock-spinner">
 					<CircularProgress />
@@ -110,6 +106,31 @@ export default class StockChart extends React.Component {
 
 		return (
 			<Grid container spacing={0}>
+				<List component="nav">
+					<Divider />
+					<ListItem>
+						<ListItemIcon><Timeline /></ListItemIcon>
+						<ListItemText primary="Current Position" />
+					</ListItem>
+					<Divider />
+				</List>
+				{
+					this.props.sharePos.map((data, i) => {
+						return (
+							<div key={ i }>
+								<HighStock key={ "chart-" + i } config={ this.setConfig(data) } />
+							</div>
+						);
+					})
+				}
+				<List component="nav">
+					<Divider />
+					<ListItem>
+						<ListItemIcon><Visibility /></ListItemIcon>
+						<ListItemText primary="Watchlist" />
+					</ListItem>
+					<Divider />
+				</List>
 				{
 					this.props.share.map((data, i) => {
 						return (

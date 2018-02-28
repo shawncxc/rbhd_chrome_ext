@@ -2,6 +2,8 @@ import axios from "axios";
 import endpoint from "../constant/endpoint";
 
 export const GET_PORTFOILO = "GET_PORTFOILO";
+export const GET_POSITIONS = "GET_POSITIONS";
+export const GET_POSLIST = "GET_POSLIST";
 export const getPortfolio = (token) => {
 	return (dispatch) => {
 		let url = endpoint.getAccount;
@@ -13,8 +15,8 @@ export const getPortfolio = (token) => {
 			},
 		})
 		.then((res) => {
+			// get portfolio
 			let portfolioUrl = res.data.results[0].portfolio || "";
-			
 			axios({
 				url: portfolioUrl,
 				method: "get",
@@ -25,6 +27,28 @@ export const getPortfolio = (token) => {
 			.then((rres) => {
 				let portfolio = rres.data;
 				dispatch({ type: GET_PORTFOILO, payload: portfolio });
+			});
+
+			// get current position
+			let positionUrl = res.data.results[0].positions + "?nonzero=true" || "";
+			axios({
+				url: positionUrl,
+				method: "get",
+				headers: {
+					Authorization: `Token ${token}`
+				},
+			})
+			.then((rres) => {
+				let positions = rres.data.results;
+				dispatch({ type: GET_POSITIONS, payload: positions });
+
+				// get the quote of the positions
+				axios
+				.all(positions.map(pos => getInstrument(pos.instrument)))
+				.then((...res) => {
+					let symbols = res[0].map(ele => ele.data.symbol);
+					dispatch({ type: GET_POSLIST, payload: symbols });
+				});
 			});
 		})
 		.catch((err) => {
@@ -76,6 +100,26 @@ export const getQuote = (symbols, interval="5minute", span="day") => {
 			.then((res) => {
 				let data = res.data.results || [];
 				dispatch({ type: GET_QUOTE, payload: data });
+			})
+			.catch((err) => {
+				console.error(err);
+			});
+		}
+	};
+};
+
+export const GET_QUOTE_POS = "GET_QUOTE_POS";
+export const getQuotePos = (symbols, interval="5minute", span="day") => {
+	return (dispatch) => {
+		if (symbols === "") {
+			dispatch({ type: GET_QUOTE_POS, payload: [] });
+		} else {
+			let url = endpoint.getQuote(symbols, interval, span);
+			axios
+			.get(url)
+			.then((res) => {
+				let data = res.data.results || [];
+				dispatch({ type: GET_QUOTE_POS, payload: data });
 			})
 			.catch((err) => {
 				console.error(err);
