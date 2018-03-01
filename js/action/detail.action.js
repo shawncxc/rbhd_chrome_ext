@@ -17,4 +17,18 @@ export const getDetailQuote = (symbol, interval="5minute", span="day") => {
 	};
 };
 
-
+export const GET_NEWS = "GET_NEWS";
+export const getNews = (symbol, page=1) => {
+	return (dispatch) => {
+		let url = endpoint.getNews(symbol, page);
+		axios
+		.get(url)
+		.then((res) => {
+			let data = res.data.results || [];
+			dispatch({ type: GET_NEWS, payload: data });
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+	};
+};
