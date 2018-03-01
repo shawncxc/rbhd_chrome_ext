@@ -48,7 +48,7 @@ export default class Position extends React.Component {
 					</div>
 					<Divider />
 					<div style={{ padding: 10 }}>
-						<Grid container spacing={12}>
+						<Grid container spacing={8}>
 							<Grid item xs={6}>
 								<Typography variant="subheading" color="textSecondary">SHARES</Typography>
 								<Typography component="p" color="inherit">{ quantity }</Typography>

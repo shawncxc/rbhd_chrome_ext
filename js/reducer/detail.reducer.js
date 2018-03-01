@@ -8,6 +8,8 @@ const DetailReducer = (
 		data: {},
 		span: "day",
 		interval: "5minute",
+		news: [],
+		totalNews: 0,
 	},
 	action
 ) => {
@@ -15,7 +17,15 @@ const DetailReducer = (
 		case GET_DETAIL_QUOTE:
 			return Object.assign({}, state, { data: action.payload });
 		case GET_NEWS:
-			return Object.assign({}, state, { news: action.payload });
+			return Object.assign(
+				{}, state, 
+				{
+					news: action.payload.results,
+					totalNews: action.payload.count,
+					nextNews: action.payload.next,
+					prevNews: action.payload.previous,
+				}
+			);
 		default:
 			return state;
 	}

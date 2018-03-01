@@ -24,7 +24,19 @@ const endpoint = {
 	getWatchList: "https://api.robinhood.com/watchlists/Default",
 	addWatchList: "https://api.robinhood.com/watchlists/Default/bulk_add/",
 	placeOrder: "https://api.robinhood.com/orders/",
-	getNews: (symbol, page=1) => `https://api.robinhood.com/midlands/news/${symbol}/?page=${page}`,
+	getNews: (symbol, url) => {
+		if (!url) {
+			return `https://api.robinhood.com/midlands/news/${symbol}/?page=1`;
+		}
+
+		let urlArr = url.split("/");
+		let pageParam = urlArr[urlArr.length - 1];
+		if (pageParam === "") {
+			return `https://api.robinhood.com/midlands/news/${symbol}/?page=1`;
+		} else {
+			return `https://api.robinhood.com/midlands/news/${symbol}/${pageParam}`;
+		}
+	},
 };
 
 export default endpoint;

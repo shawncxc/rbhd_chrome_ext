@@ -16,7 +16,7 @@ class Detail extends React.Component {
 	componentDidMount() {
 		let symbol = this.props.match.params.symbol;
 		this.props.getDetailQuote(symbol);
-		this.props.getNews(symbol, 1);
+		this.props.getNews(symbol);
 	}
 
 	render() {
@@ -38,6 +38,9 @@ let mapStateToProps = (state) => {
 		span: state.detail.span,
 		interval: state.detail.interval,
 		news: state.detail.news ? state.detail.news : [],
+		totalNews: state.detail.totalNews ? state.detail.totalNews : 0,
+		nextNews: state.detail.nextNews,
+		prevNews: state.detail.prevNews,
 	};
 };
 

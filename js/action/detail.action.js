@@ -18,13 +18,13 @@ export const getDetailQuote = (symbol, interval="5minute", span="day") => {
 };
 
 export const GET_NEWS = "GET_NEWS";
-export const getNews = (symbol, page=1) => {
+export const getNews = (symbol, url=false) => {
 	return (dispatch) => {
-		let url = endpoint.getNews(symbol, page);
+		url = endpoint.getNews(symbol, url);
 		axios
 		.get(url)
 		.then((res) => {
-			let data = res.data.results || [];
+			let data = res.data || {};
 			dispatch({ type: GET_NEWS, payload: data });
 		})
 		.catch((err) => {
