@@ -2,6 +2,7 @@ import React from "react";
 import HighStock from "react-highcharts/ReactHighstock";
 import { CircularProgress } from "material-ui/Progress";
 import Grid from "material-ui/Grid";
+import Button from "material-ui/Button";
 
 HighStock.Highcharts.setOptions({
 	chart: {
@@ -31,11 +32,40 @@ HighStock.Highcharts.setOptions({
 	},
 });
 
+const btnRowStyle = {
+	textAlign: "center",
+};
+
+const normalBtnStyle = {
+	color: "#1fcc9a",
+	marginTop: 10,
+	marginBottom: 10,
+	fontSize: 10,
+};
+
+const highlightBtnStyle = {
+	marginTop: 10,
+	marginBottom: 10,
+	fontSize: 10,
+	backgroundColor: "#1fcc9a",
+};
+
 export default class StockChart extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.setConfig = this.setConfig.bind(this);
+		this.handleSpanChange = this.handleSpanChange.bind(this);
+
+		this.state = {
+			span: "day",
+		};
+	}
+
+	handleSpanChange(span) {
+		this.setState({ span: span }, () => {
+			this.props.setDetailQuoteSpan(span);
+		});
 	}
 
 	setConfig(data) {
@@ -83,7 +113,21 @@ export default class StockChart extends React.Component {
 		}
 
 		return (
-			<HighStock config={ this.setConfig(this.props.data) } />
+			<Grid container spacing={0}>
+				<HighStock config={ this.setConfig(this.props.data) } />
+				<Grid item xs={3} style={ btnRowStyle }>
+					<Button size="small" style={ this.state.span === "day" ? highlightBtnStyle : normalBtnStyle } onClick={ () => { this.handleSpanChange("day"); } }>day</Button>
+				</Grid>
+				<Grid item xs={3} style={ btnRowStyle }>
+					<Button size="small" style={ this.state.span === "week" ? highlightBtnStyle : normalBtnStyle } onClick={ () => { this.handleSpanChange("week"); } }>week</Button>
+				</Grid>
+				<Grid item xs={3} style={ btnRowStyle }>
+					<Button size="small" style={ this.state.span === "year" ? highlightBtnStyle : normalBtnStyle } onClick={ () => { this.handleSpanChange("year"); } }>year</Button>
+				</Grid>
+				<Grid item xs={3} style={ btnRowStyle }>
+					<Button size="small" style={ this.state.span === "5year" ? highlightBtnStyle : normalBtnStyle } onClick={ () => { this.handleSpanChange("5year"); } }>5 year</Button>
+				</Grid>
+			</Grid>
 		);
 	}
 }

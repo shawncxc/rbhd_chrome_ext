@@ -19,6 +19,7 @@ const endpoint = {
 
 		return ["https://api.robinhood.com/quotes/historicals/?symbols=", `&interval=${interval}&span=${span}`].join(symbols)
 	},
+	getCurrentQuote: (symbol) => `https://api.robinhood.com/quotes/${symbol}/`,
 	login: "https://api.robinhood.com/api-token-auth/",
 	getAccount: "https://api.robinhood.com/accounts/",
 	getWatchList: "https://api.robinhood.com/watchlists/Default",
@@ -37,6 +38,7 @@ const endpoint = {
 			return `https://api.robinhood.com/midlands/news/${symbol}/${pageParam}`;
 		}
 	},
+	getFundamental: (symbol) => `https://api.robinhood.com/fundamentals/${symbol}/`,
 };
 
 export default endpoint;

@@ -4,7 +4,6 @@ import Typography from "material-ui/Typography";
 import List from "material-ui-icons/List";
 import Paper from "material-ui/Paper";
 import Divider from "material-ui/Divider";
-import { FormLabel, FormControl, } from "material-ui/Form";
 
 export default class Position extends React.Component {
 	constructor(props) {
@@ -49,14 +48,14 @@ export default class Position extends React.Component {
 					<Divider />
 					<div style={{ padding: 10 }}>
 						<Grid container spacing={8}>
-							<Grid item xs={6}>
+							<Grid item xs={12}>
 								<Typography variant="subheading" color="textSecondary">SHARES</Typography>
-								<Typography component="p" color="inherit">{ quantity }</Typography>
+								<Typography variant="body1" color="inherit">{ quantity }</Typography>
 							</Grid>
-							<Grid item xs={6}>
+							{/*<Grid item xs={6}>
 								<Typography variant="subheading" color="textSecondary">EQUITY VALUE</Typography>
 								<Typography variant="body1" color="inherit">{ equityValue }</Typography>
-							</Grid>
+							</Grid>*/}
 							<Grid item xs={12}>
 								<Typography variant="subheading" color="textSecondary">AVG COST</Typography>
 								<Typography variant="body1" color="inherit">{ avgPrice }</Typography>

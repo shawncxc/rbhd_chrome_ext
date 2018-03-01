@@ -32,3 +32,26 @@ export const getNews = (symbol, url=false) => {
 		});
 	};
 };
+
+export const GET_FUNDAMENTAL = "GET_FUNDAMENTAL";
+export const getFundamental = (symbol) => {
+	return (dispatch) => {
+		let url = endpoint.getFundamental(symbol);
+		axios
+		.get(url)
+		.then((res) => {
+			let data = res.data || {};
+			dispatch({ type: GET_FUNDAMENTAL, payload: data });
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+	};
+};
+
+export const SET_DETAIL_QUOTE_SPAN = "SET_DETAIL_QUOTE_SPAN";
+export const setDetailQuoteSpan = (span) => {
+	return (dispatch) => {
+		dispatch({ type: SET_DETAIL_QUOTE_SPAN, payload: span });
+	};
+};

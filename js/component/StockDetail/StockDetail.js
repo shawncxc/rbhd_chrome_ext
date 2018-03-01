@@ -8,6 +8,7 @@ import List from "material-ui-icons/List";
 import Position from "./Position";
 import StockChart from "./StockChart";
 import News from "./News";
+import Fundamental from "./Fundamental";
 import "../../../css/StockDetail.css";
 
 export default class StockDetail extends React.Component {
@@ -35,11 +36,14 @@ export default class StockDetail extends React.Component {
 					</Toolbar>
 				</AppBar>
 				<StockChart { ...this.props } />
-				<Grid item xs={12} className="stock-detial-item-container">
+				<Grid item xs={12} className="stock-detail-item-container">
 					<Position { ...this.props } />
 				</Grid>
-				<Grid item xs={12} className="stock-detial-item-container">
+				<Grid item xs={12} className="stock-detail-item-container">
 					<News { ...this.props } />
+				</Grid>
+				<Grid item xs={12} className="stock-detail-item-container">
+					<Fundamental { ...this.props } />
 				</Grid>
 			</Grid>
 		);

@@ -1,6 +1,8 @@
 import {
 	GET_DETAIL_QUOTE,
+	SET_DETAIL_QUOTE_SPAN,
 	GET_NEWS,
+	GET_FUNDAMENTAL,
 } from "../action/detail.action";
 
 const DetailReducer = (
@@ -10,6 +12,7 @@ const DetailReducer = (
 		interval: "5minute",
 		news: [],
 		totalNews: 0,
+		fundamental: {},
 	},
 	action
 ) => {
@@ -26,6 +29,17 @@ const DetailReducer = (
 					prevNews: action.payload.previous,
 				}
 			);
+		case GET_FUNDAMENTAL:
+			return Object.assign({}, state, { fundamental: action.payload });
+		case SET_DETAIL_QUOTE_SPAN:
+			let interval = "5minute";
+			let span = action.payload;
+			// span = day or week, interval can be 5minute
+			if (span === "year")
+				interval = "day";
+			if (span === "5year")
+				interval = "week";
+			return Object.assign({}, state, { span: span, interval: interval });
 		default:
 			return state;
 	}
