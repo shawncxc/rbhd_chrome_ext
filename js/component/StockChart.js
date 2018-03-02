@@ -1,6 +1,5 @@
 import React from "react";
 import HighStock from "react-highcharts/ReactHighstock";
-import { CircularProgress } from "material-ui/Progress";
 import Grid from "material-ui/Grid";
 import Button from "material-ui/Button";
 import List, { ListItem, ListItemIcon, ListItemText } from "material-ui/List";
@@ -108,26 +107,19 @@ export default class StockChart extends React.Component {
 	}
 
 	render() {
-		if (!this.props.share || this.props.share.length === 0 ||
-			!this.props.sharePos || this.props.sharePos.length === 0
-		) {
-			return (
-				<Grid item xs={12} className="stock-spinner">
-					<CircularProgress />
-				</Grid>
-			);
-		}
-
 		return (
 			<Grid container spacing={0}>
-				<List component="nav">
-					<Divider />
-					<ListItem>
-						<ListItemIcon><Timeline /></ListItemIcon>
-						<ListItemText primary="Stocks" />
-					</ListItem>
-					<Divider />
-				</List>
+				{
+					this.props.sharePos && this.props.sharePos.length > 0 ?
+					<List component="nav">
+						<Divider />
+						<ListItem>
+							<ListItemIcon><Timeline /></ListItemIcon>
+							<ListItemText primary="Stocks" />
+						</ListItem>
+						<Divider />
+					</List> : ""
+				}
 				{
 					this.props.sharePos.map((data, i) => {
 						return (
