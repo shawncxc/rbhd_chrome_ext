@@ -11,12 +11,14 @@ export default class AccountSummary extends React.Component {
 	}
 
 	render() {
+		let afterMarket = this.props.portfolio.extended_hours_equity;
+		let market = this.props.portfolio.equity;
 		return (
 			<Grid item xs={12}>
 				<AppBar color="primary" position="static">
 					<Toolbar>
 						<Typography variant="title" color="inherit">
-							<AttachMoney />{ this.props.portfolio.equity } ({ this.props.portfolio.extended_hours_equity })
+							<AttachMoney />{ afterMarket ? afterMarket : market }
 						</Typography>
 					</Toolbar>
 				</AppBar>

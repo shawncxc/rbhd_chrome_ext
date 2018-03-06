@@ -153,10 +153,23 @@ export const addWatchList = (symbol, token) => {
 	};
 };
 
-export const REMOVE_QUOTE = "REMOVE_QUOTE";
-export const removeQuote = (symbol) => {
+export const REMOVE_WATCHLIST = "REMOVE_WATCHLIST";
+export const removeWatchList = (symbol, instrumentId, token) => {
 	return (dispatch) => {
-		dispatch({ type: REMOVE_QUOTE, payload: symbol });
+		let url = endpoint.removeWatchList(instrumentId);
+		axios({
+			url: url,
+			method: "delete",
+			headers: {
+				Authorization: `Token ${token}`
+			},
+		})
+		.then(() => {
+			dispatch({ type: REMOVE_WATCHLIST, payload: symbol });
+		})
+		.catch((err) => {
+			console.error(err);
+		});
 	};
 };
 

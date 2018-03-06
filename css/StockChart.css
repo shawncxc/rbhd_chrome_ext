@@ -3,3 +3,10 @@
 	align-content: center;
 	justify-content: center;
 }
+
+.remove-watchlist-btn {
+	z-index: 10;
+    position: absolute;
+    left: 410px;
+    top: -15px;
+}

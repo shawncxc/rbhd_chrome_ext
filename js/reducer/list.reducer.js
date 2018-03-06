@@ -1,7 +1,7 @@
 import {
 	GET_QUOTE,
 	ADD_WATCHLIST,
-	REMOVE_QUOTE,
+	REMOVE_WATCHLIST,
 	SET_QUOTE_SPAN,
 	GET_WATCHLIST,
 	GET_PORTFOILO,
@@ -28,7 +28,7 @@ const ListReducer = (
 			let newQuotes = state.quote.slice();
 			newQuotes.push(action.payload);
 			return Object.assign({}, state, { quote: newQuotes });
-		case REMOVE_QUOTE:
+		case REMOVE_WATCHLIST:
 			let removedQuote = state.quote.slice().filter(q => q !== action.payload);
 			return Object.assign({}, state, { quote: removedQuote });
 		case SET_QUOTE_SPAN:

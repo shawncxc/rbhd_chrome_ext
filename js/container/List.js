@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import {
 	getQuote,
 	addWatchList,
-	removeQuote,
+	removeWatchList,
 	setQuoteSpan,
 	getWatchList,
 	getPortfolio,
@@ -57,7 +57,7 @@ let mapStateToProps = (state) => {
 };
 
 let mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({ getQuote, addWatchList, removeQuote, setQuoteSpan, getWatchList, getPortfolio, getQuotePos, }, dispatch);
+	return bindActionCreators({ getQuote, addWatchList, removeWatchList, setQuoteSpan, getWatchList, getPortfolio, getQuotePos, }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(List)

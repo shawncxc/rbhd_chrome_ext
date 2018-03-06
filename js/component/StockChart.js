@@ -2,10 +2,12 @@ import React from "react";
 import HighStock from "react-highcharts/ReactHighstock";
 import Grid from "material-ui/Grid";
 import Button from "material-ui/Button";
+import IconButton from "material-ui/IconButton";
 import List, { ListItem, ListItemIcon, ListItemText } from "material-ui/List";
 import Divider from "material-ui/Divider";
 import Visibility from "material-ui-icons/Visibility";
 import Timeline from "material-ui-icons/Timeline";
+import HighlightOff from "material-ui-icons/HighlightOff";
 import "../../css/StockChart.css";
 
 HighStock.Highcharts.setOptions({
@@ -42,6 +44,7 @@ export default class StockChart extends React.Component {
 
 		this.setConfig = this.setConfig.bind(this);
 		this.goToStockDetail = this.goToStockDetail.bind(this);
+		this.removeWatchList = this.removeWatchList.bind(this);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -106,6 +109,12 @@ export default class StockChart extends React.Component {
 		this.props.history.push(`/stock/${symbol}`);
 	}
 
+	removeWatchList(symbol, instrumentUrl) {
+		let instrumentArr = instrumentUrl.split("/");
+		let instrumentId = instrumentArr[instrumentArr.length - 2];
+		this.props.removeWatchList(symbol, instrumentId, this.props.token);
+	}
+
 	render() {
 		return (
 			<Grid container spacing={0}>
@@ -141,6 +150,7 @@ export default class StockChart extends React.Component {
 					this.props.share.map((data, i) => {
 						return (
 							<div key={ i }>
+								<IconButton className="remove-watchlist-btn" onClick={ () => { this.removeWatchList(data.symbol, data.instrument) } }><HighlightOff /></IconButton>
 								<HighStock key={ "chart-" + i } config={ this.setConfig(data) } />
 							</div>
 						);
