@@ -127,32 +127,19 @@ const stopLimitSellOrder = (account, instrument, symbol, timeInForce, price, sto
 	}
 };
 
-const pickOrder = (orderType) => {
-	switch(orderType) {
-		case "marketBuyOrder":
-			return marketBuyOrder;
-		case "limitBuyOrder":
-			return limitBuyOrder;
-		case "stopLossBuyOrder":
-			return stopLossBuyOrder;
-		case "stopLimitBuyOrder":
-			return stopLimitBuyOrder;
-		case "marketSellOrder":
-			return marketSellOrder;
-		case "limitSellOrder":
-			return limitSellOrder;
-		case "stopLossSellOrder":
-			return stopLossSellOrder;
-		case "stopLimitSellOrder":
-			return stopLimitSellOrder;
-	}
+export const Order = {
+	marketBuyOrder: marketBuyOrder,
+	limitBuyOrder: limitBuyOrder,
+	stopLossBuyOrder: stopLossBuyOrder,
+	stopLimitBuyOrder: stopLimitBuyOrder,
+	marketSellOrder: marketSellOrder,
+	limitSellOrder: limitSellOrder,
+	stopLossSellOrder: stopLossSellOrder,
+	stopLimitSellOrder: stopLimitSellOrder,
 };
 
-export const placeOrder = (account, instrument, symbol, timeInForce, price, stopPrice, quantity, orderType) => {
-	let order = pickOrder(orderType);
-	let orderPayload = order();
+export const placeOrder = (orderPayload, token) => {
 	let url = endpoint.placeOrder;
-
 	return (dispatch) => {
 		axios({
 			url: url,
@@ -160,9 +147,7 @@ export const placeOrder = (account, instrument, symbol, timeInForce, price, stop
 			headers: {
 				Authorization: `Token ${token}`
 			},
-			data: {
-				symbols: symbol,
-			},
+			data: orderPayload,
 		})
 		.then(() => {
 			// dispatch({ type: ADD_WATCHLIST, payload: symbol });

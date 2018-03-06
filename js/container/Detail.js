@@ -7,6 +7,7 @@ import {
 	getNews,
 	getFundamental,
 } from "../action/detail.action";
+import { placeOrder } from "../util/order";
 import Grid from "material-ui/Grid";
 import StockDetail from "../component/StockDetail/StockDetail";
 
@@ -57,7 +58,7 @@ let mapStateToProps = (state) => {
 };
 
 let mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({ getDetailQuote, getNews, getFundamental, setDetailQuoteSpan, }, dispatch);
+	return bindActionCreators({ getDetailQuote, getNews, getFundamental, setDetailQuoteSpan, placeOrder, }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Detail)
