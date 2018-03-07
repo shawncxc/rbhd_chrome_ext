@@ -21,6 +21,9 @@ https://api.robinhood.com/midlands/ratings/a4ecd608-e7b4-4ff3-afa5-f77ae7632dfb/
 popularity:
 https://api.robinhood.com/instruments/a4ecd608-e7b4-4ff3-afa5-f77ae7632dfb/popularity/
 
+tags:
+https://api.robinhood.com/midlands/tags/instrument/a4ecd608-e7b4-4ff3-afa5-f77ae7632dfb/
+
 */
 
 
