@@ -10,9 +10,10 @@ import {
 	getPortfolio,
 	getQuotePos,
 } from "../action/list.action"
-import StockChart from "../component/StockChart";
-import QuoteInput from "../component/QuoteInput";
-import AccountSummary from "../component/AccountSummary";
+// import ListPreload from "../component/StockList/ListPreload";
+import StockChart from "../component/StockList/StockChart";
+import QuoteInput from "../component/StockList/QuoteInput";
+import AccountSummary from "../component/StockList/AccountSummary";
 import Grid from "material-ui/Grid";
 
 class List extends React.Component {
@@ -26,6 +27,21 @@ class List extends React.Component {
 	}
 
 	render() {
+		// console.log(this.props);
+		// if (this.props.share.length === 0 ||
+		// 	this.props.quote.length === 0
+		// 	// this.props.token.length === 0
+		// 	// Object.keys(this.props.portfolio).length === 0
+		// ) {
+		// 	return (
+		// 		<div>
+		// 			<Grid item xs={12}>
+		// 				<ListPreload />
+		// 			</Grid>
+		// 		</div>
+		// 	);
+		// }
+
 		return (
 			<div>
 				<Grid item xs={12}>

@@ -8,7 +8,8 @@ import Divider from "material-ui/Divider";
 import Visibility from "material-ui-icons/Visibility";
 import Timeline from "material-ui-icons/Timeline";
 import HighlightOff from "material-ui-icons/HighlightOff";
-import "../../css/StockChart.css";
+import ContentLoader from "react-content-loader"
+import "../../../css/StockChart.css";
 
 HighStock.Highcharts.setOptions({
 	chart: {
@@ -116,6 +117,39 @@ export default class StockChart extends React.Component {
 	}
 
 	render() {
+		const StockPlaceholder = (
+			<Grid item xs={12}>
+				<ContentLoader
+					height={300}
+					width={450}
+					speed={1}
+					primaryColor={"#d1d1d1"}
+					secondaryColor={"#e8e8e8"}
+				>
+					<rect x="175" y="10" rx="4" ry="4" width="100" height="20" /> 
+					<rect x="25" y="50" rx="5" ry="5" width="400" height="250" />
+				</ContentLoader>
+			</Grid>
+		);
+
+		let StockPlaceholders = [];
+		for (let i = 0; i < 10; i++) {
+			StockPlaceholders.push(
+				<Grid item xs={12} key={ i }>
+					<ContentLoader
+						height={300}
+						width={450}
+						speed={1}
+						primaryColor={"#d1d1d1"}
+						secondaryColor={"#e8e8e8"}
+					>
+						<rect x="175" y="10" rx="4" ry="4" width="100" height="20" /> 
+						<rect x="25" y="50" rx="5" ry="5" width="400" height="250" />
+					</ContentLoader>
+				</Grid>
+			);
+		}
+
 		return (
 			<Grid container spacing={0}>
 				{
@@ -130,6 +164,7 @@ export default class StockChart extends React.Component {
 					</List> : ""
 				}
 				{
+					this.props.sharePos.length > 0 ?
 					this.props.sharePos.map((data, i) => {
 						return (
 							<div key={ i }>
@@ -137,6 +172,8 @@ export default class StockChart extends React.Component {
 							</div>
 						);
 					})
+					:
+					StockPlaceholder
 				}
 				<List component="nav">
 					<Divider />
@@ -147,6 +184,7 @@ export default class StockChart extends React.Component {
 					<Divider />
 				</List>
 				{
+					this.props.share.length > 0 ?
 					this.props.share.map((data, i) => {
 						return (
 							<div key={ i }>
@@ -155,6 +193,8 @@ export default class StockChart extends React.Component {
 							</div>
 						);
 					})
+					:
+					StockPlaceholders
 				}
 			</Grid>
 		);
