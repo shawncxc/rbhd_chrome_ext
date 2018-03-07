@@ -3,11 +3,23 @@
 /* 
 examples:
 
-historical quotes:
-https://api.robinhood.com/quotes/historicals/?symbols=IRBT&interval=5minute&span=day&bounds=trading
+quotes:
+1D: https://api.robinhood.com/quotes/NVDA/
+1W: https://api.robinhood.com/quotes/historicals/NVDA/?symbol=NVDA&bounds=regular&span=week&interval=10minute
+1M: https://api.robinhood.com/quotes/historicals/NVDA/?symbol=NVDA&bounds=regular&span=year&interval=day
+3M: https://api.robinhood.com/quotes/historicals/NVDA/?symbol=NVDA&bounds=regular&span=year&interval=day
+1Y: https://api.robinhood.com/quotes/historicals/NVDA/?symbol=NVDA&bounds=regular&span=year&interval=day
+5Y: https://api.robinhood.com/quotes/historicals/NVDA/?symbol=NVDA&bounds=regular&span=5year&interval=week
 
 current positions:
 https://api.robinhood.com/accounts/5QZ22711/positions/?nonzero=true
+
+ratings:
+https://api.robinhood.com/midlands/ratings/?ids=<instrument_ids>
+https://api.robinhood.com/midlands/ratings/a4ecd608-e7b4-4ff3-afa5-f77ae7632dfb/
+
+popularity:
+https://api.robinhood.com/instruments/a4ecd608-e7b4-4ff3-afa5-f77ae7632dfb/popularity/
 
 */
 
