@@ -2,6 +2,8 @@ import axios from "axios";
 import endpoint from "../constant/endpoint";
 
 export const GET_DETAIL_QUOTE = "GET_DETAIL_QUOTE";
+export const GET_RATING = "GET_RATING";
+export const GET_POPULARITY = "GET_POPULARITY";
 export const getDetailQuote = (symbol, interval="5minute", span="day") => {
 	return (dispatch) => {
 		let url = endpoint.getQuote(symbol, interval, span);
@@ -10,6 +12,26 @@ export const getDetailQuote = (symbol, interval="5minute", span="day") => {
 		.then((res) => {
 			let data = res.data.results[0] || {};
 			dispatch({ type: GET_DETAIL_QUOTE, payload: data });
+
+			// get rating
+			let instrumentArr = data.instrument.split("/");
+			let instrumentId = instrumentArr[instrumentArr.length - 2];
+			url = endpoint.getRating(instrumentId);
+			axios
+			.get(url)
+			.then((res) => {
+				let data = res.data.results[0].summary || {};
+				dispatch({ type: GET_RATING, payload: data });
+			});
+
+			// get popularity
+			url = endpoint.getPopularity(instrumentId);
+			axios
+			.get(url)
+			.then((res) => {
+				let data = res.data.num_open_positions || 0;
+				dispatch({ type: GET_POPULARITY, payload: data });
+			});
 		})
 		.catch((err) => {
 			console.error(err);

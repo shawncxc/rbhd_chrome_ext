@@ -55,6 +55,8 @@ const endpoint = {
 		}
 	},
 	getFundamental: (symbol) => `https://api.robinhood.com/fundamentals/${symbol}/`,
+	getRating: (instrumentIds) => `https://api.robinhood.com/midlands/ratings/?ids=${instrumentIds}`,
+	getPopularity: (instrumentId) => `https://api.robinhood.com/instruments/${instrumentId}/popularity/`,
 };
 
 export default endpoint;

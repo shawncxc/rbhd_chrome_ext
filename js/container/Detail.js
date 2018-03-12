@@ -54,6 +54,8 @@ let mapStateToProps = (state) => {
 		nextNews: state.detail.nextNews,
 		prevNews: state.detail.prevNews,
 		fundamental: state.detail.fundamental,
+		rating: state.detail.rating,
+		popularity: state.detail.popularity,
 	};
 };
 

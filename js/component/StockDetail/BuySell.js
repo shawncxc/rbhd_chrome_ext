@@ -95,14 +95,14 @@ export default class BuySell extends React.Component {
 					<Typography variant="body1" color="inherit" align="left">Price: { currentPrice }</Typography>
 					<Typography variant="body1" color="inherit" align="left">Total: { currentPrice * (this.state.shares ? this.state.shares : 0 ) }</Typography>
 					<Button variant="raised" color="primary" onClick={ this.placeBuy } fullWidth>Submit Buy</Button>
-					<Button variant="raised" color="primary" onClick={ this.onCloseDrawer } fullWidth>Cancel</Button>
+					<Button color="primary" onClick={ this.onCloseDrawer } fullWidth>Cancel</Button>
 				</Drawer>
 				<Drawer anchor="bottom" open={ this.state.sellDrawer } onClose={ this.onCloseDrawer }>
 					<TextField label="Shares" onChange={ this.onSharesChange } fullWidth />
 					<Typography variant="body1" color="inherit" align="left">Price: { currentPrice }</Typography>
 					<Typography variant="body1" color="inherit" align="left">Total: { currentPrice * (this.state.shares ? this.state.shares : 0 ) }</Typography>
 					<Button variant="raised" color="primary" onClick={ this.placeSell } fullWidth>Submit Sell</Button>
-					<Button variant="raised" color="primary" onClick={ this.onCloseDrawer } fullWidth>Cancel</Button>
+					<Button color="primary" onClick={ this.onCloseDrawer } fullWidth>Cancel</Button>
 				</Drawer>
 			</Grid>
 		);

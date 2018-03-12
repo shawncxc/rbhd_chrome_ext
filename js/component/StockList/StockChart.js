@@ -10,34 +10,9 @@ import Timeline from "material-ui-icons/Timeline";
 import HighlightOff from "material-ui-icons/HighlightOff";
 import ContentLoader from "react-content-loader"
 import "../../../css/StockChart.css";
+import { highChartsStockConfig } from "../highChartsStockConfig";
 
-HighStock.Highcharts.setOptions({
-	chart: {
-		height: 200,
-		width: 450,
-	},
-	title: {
-		style: {
-			color: "black",
-			font: "bold 16px Trebuchet MS, Verdana, sans-serif"
-		}
-	},
-	legend: {
-		itemStyle: {
-			font: "9pt Trebuchet MS, Verdana, sans-serif",
-			color: "white"
-		},
-		itemHoverStyle:{
-			color: "gray"
-		}
-	},
-	yAxis: { 
-		visible: false,
-	},
-	xAxis: {
-		lineColor: "gray",
-	},
-});
+HighStock.Highcharts.setOptions(highChartsStockConfig);
 
 export default class StockChart extends React.Component {
 	constructor(props) {

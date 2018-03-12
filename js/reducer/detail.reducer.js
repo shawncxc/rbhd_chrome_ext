@@ -3,6 +3,8 @@ import {
 	SET_DETAIL_QUOTE_SPAN,
 	GET_NEWS,
 	GET_FUNDAMENTAL,
+	GET_RATING,
+	GET_POPULARITY,
 } from "../action/detail.action";
 
 const DetailReducer = (
@@ -40,6 +42,10 @@ const DetailReducer = (
 			if (span === "5year")
 				interval = "week";
 			return Object.assign({}, state, { span: span, interval: interval });
+		case GET_RATING:
+			return Object.assign({}, state, { rating: action.payload });
+		case GET_POPULARITY:
+			return Object.assign({}, state, { popularity: action.payload });
 		default:
 			return state;
 	}
