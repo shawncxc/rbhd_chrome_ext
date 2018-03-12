@@ -16,7 +16,7 @@ side: ,
 
 */
 
-const marketBuyOrder = (account, instrument, symbol, timeInForce, quantity) => {
+const marketBuyOrder = (account, instrument, symbol, timeInForce, price, quantity) => {
 	return {
 		account: account,
 		instrument: instrument,
@@ -24,6 +24,7 @@ const marketBuyOrder = (account, instrument, symbol, timeInForce, quantity) => {
 		type: "market",
 		time_in_force: timeInForce,
 		trigger: "immediate",
+		price: price,
 		quantity: quantity,
 		side: "buy",
 	}
@@ -149,7 +150,9 @@ export const placeOrder = (orderPayload, token) => {
 			},
 			data: orderPayload,
 		})
-		.then(() => {
+		.then((res) => {
+			console.log("order placed");
+			console.log("order summary:", res);
 			// dispatch({ type: ADD_WATCHLIST, payload: symbol });
 		})
 		.catch((err) => {

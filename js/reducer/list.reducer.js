@@ -34,7 +34,8 @@ const ListReducer = (
 		case SET_QUOTE_SPAN:
 			let interval = "5minute";
 			let span = action.payload;
-			// span = day or week, interval can be 5minute
+			if (span === "week")
+				interval = "10minute"
 			if (span === "year")
 				interval = "day";
 			if (span === "5year")

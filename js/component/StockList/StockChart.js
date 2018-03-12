@@ -164,7 +164,6 @@ export default class StockChart extends React.Component {
 					</List> : ""
 				}
 				{
-					this.props.sharePos.length > 0 ?
 					this.props.sharePos.map((data, i) => {
 						return (
 							<div key={ i }>
@@ -172,8 +171,6 @@ export default class StockChart extends React.Component {
 							</div>
 						);
 					})
-					:
-					StockPlaceholder
 				}
 				<List component="nav">
 					<Divider />
